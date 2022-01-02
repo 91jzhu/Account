@@ -1,8 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-require('Icons/money.svg')
-require('Icons/tags.svg')
-require('Icons/data.svg')
+require('icons/money.svg')
+require('icons/tags.svg')
+require('icons/data.svg')
 
 type Props={
     name:String

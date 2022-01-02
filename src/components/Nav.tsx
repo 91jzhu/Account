@@ -9,15 +9,15 @@ const Nav=()=>{
             <ul>
                 <li>
                     <Icon name="tags"/>
-                    <Link to="tags">Tags</Link>
+                    <Link to="/tags">Tags</Link>
                 </li>
                 <li>
                     <Icon name="money"/>
-                    <Link to="money">Money</Link>
+                    <Link to="/money">Money</Link>
                 </li>
                 <li>
                     <Icon name="data"/>
-                    <Link to="data">Data</Link>
+                    <Link to="/data">Data</Link>
                 </li>
             </ul>
         </NavWrapper>
