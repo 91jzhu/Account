@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import * as React from "react";
 import Icon from "./Icon";
 
@@ -8,13 +8,13 @@ const Nav = () => {
         <NavWrapper>
             <ul>
                 <li>
-                    <Link to="/tags"><Icon name="tags"/>Tags</Link>
+                    <NavLink to="/tags"><Icon name="tags"/>Tags</NavLink>
                 </li>
                 <li>
-                    <Link to="/money"><Icon name="money"/>Money</Link>
+                    <NavLink to="/money"><Icon name="money"/>Money</NavLink>
                 </li>
                 <li>
-                    <Link to="/data"><Icon name="data"/>Data</Link>
+                    <NavLink to="/data"><Icon name="data"/>Data</NavLink>
                 </li>
             </ul>
         </NavWrapper>
@@ -36,6 +36,12 @@ const NavWrapper = styled.div`
       width: 33.33333%;
       text-align: center;
       padding: 4px 0;
+      > .active {
+        color:blueviolet;
+        .icon{
+          fill:blueviolet;
+        }
+      }
     }
   }
 `
