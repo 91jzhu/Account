@@ -3,21 +3,18 @@ import {Link} from "react-router-dom";
 import * as React from "react";
 import Icon from "./Icon";
 
-const Nav=()=>{
+const Nav = () => {
     return (
         <NavWrapper>
             <ul>
                 <li>
-                    <Icon name="tags"/>
-                    <Link to="/tags">Tags</Link>
+                    <Link to="/tags"><Icon name="tags"/>Tags</Link>
                 </li>
                 <li>
-                    <Icon name="money"/>
-                    <Link to="/money">Money</Link>
+                    <Link to="/money"><Icon name="money"/>Money</Link>
                 </li>
                 <li>
-                    <Icon name="data"/>
-                    <Link to="/data">Data</Link>
+                    <Link to="/data"><Icon name="data"/>Data</Link>
                 </li>
             </ul>
         </NavWrapper>
