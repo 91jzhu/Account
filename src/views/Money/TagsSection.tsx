@@ -1,6 +1,31 @@
 import styled from "styled-components";
+import React, {useState} from "react";
 
-const TagsSection = styled.section`
+const TagsSection: React.FunctionComponent = () => {
+    const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行'])
+    const [chosen, setChosen] = useState<string[]>([])
+    const onAddTag = () => {
+        let tagName = window.prompt('请输入标签名');
+        tagName && setTags([...tags, tagName])
+    }
+    const toggle = (tag: string) => {
+        chosen.includes(tag)?setChosen(chosen.filter(t=>t!==tag)):setChosen([...chosen,tag])
+    }
+    return (
+        <Wrapper>
+            <ol>
+                {tags.map(tag =>
+                    <li key={tag}
+                        onClick={() => toggle(tag)}
+                        className={chosen.includes(tag)?"selected":""}>{tag}</li>
+                )}
+            </ol>
+            <button onClick={onAddTag}>新增标签</button>
+        </Wrapper>
+    )
+}
+
+const Wrapper = styled.section`
   background: #FFFFFF;
   padding: 12px 16px;
   flex-grow: 1;
@@ -19,6 +44,9 @@ const TagsSection = styled.section`
       padding: 3px 18px;
       font-size: 14px;
       margin: 8px 12px;
+      &.selected{
+        background: deepskyblue;
+      }
     }
   }
 
