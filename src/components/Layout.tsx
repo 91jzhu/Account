@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Layout=(props:any)=>{
     return (
         <Wrapper>
-            <Main>
+            <Main className={props.className}>
                 {props.children}
             </Main>
             <Nav/>
