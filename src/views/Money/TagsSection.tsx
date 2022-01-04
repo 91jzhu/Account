@@ -1,23 +1,18 @@
 import styled from "styled-components";
 import React, {useState} from "react";
-
+import {createId} from "../../lib/createId";
+import {useTags} from "../../useTags";
 
 type Props={
     value:number[];
     onChange:(selected:number[])=>void;
 }
 const TagsSection: React.FunctionComponent<Props> = (props) => {
-    const [tags, setTags] = useState<{ id: number, name: string }[]>(
-        [
-            {id: 1, name: '衣'},
-            {id: 2, name: '食'},
-            {id: 3, name: '住'},
-            {id: 4, name: '行'}
-        ])
+    const {tags,setTags}=useTags()
     const chosen=props.value
     const onAddTag = () => {
         let tagName = window.prompt('请输入标签名');
-        tagName && setTags([...tags, {id:Math.random(),name:tagName}])
+        tagName && setTags([...tags, {id:createId(),name:tagName}])
     }
     const toggle = (tagId: number) => {
         chosen.includes(tagId)?props.onChange(chosen.filter(t=>t!==tagId)):props.onChange([...chosen,tagId])

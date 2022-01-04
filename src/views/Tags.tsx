@@ -4,15 +4,11 @@ import {useState} from "react";
 import Icon from "../components/Icon";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
+import {createId} from "../lib/createId";
+import {useTags} from "useTags";
 
 function Tags() {
-    const [tags, setTags] = useState<{ id: number, name: string }[]>(
-        [
-            {id: 1, name: '衣'},
-            {id: 2, name: '食'},
-            {id: 3, name: '住'},
-            {id: 4, name: '行'}
-        ])
+    const {tags}=useTags()
     return (
         <Layout>
             <TagList>
