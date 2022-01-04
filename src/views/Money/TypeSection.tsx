@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import React, {useState} from "react";
 
-const TypeSection: React.FunctionComponent = () => {
+type Prop={
+    value:string,
+    onChange:(type:('-'|'+'))=>void
+}
+const TypeSection: React.FunctionComponent<Prop> = (props) => {
     const typeMap ={'-': '支出', '+': '收入'}
     type keys=keyof typeof typeMap
     const [typeList] = useState<keys[]>(['-', '+'])
-    const [selected, setSelected] = useState('-')
     return (
         <Wrapper>
             <ul>
                 {typeList.map(type =>
-                    <li className={selected === type ? "selected" : ''}
-                        onClick={() => setSelected(type)}
+                    <li className={props.value === type ? "selected" : ''}
+                        onClick={() => props.onChange(type)}
                         key={type}>{typeMap[type]}
                     </li>)
                 }

@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import * as React from "react";
-import {useRef, useState} from "react";
+import {useRef} from "react";
 
-const NoteSection: React.FunctionComponent = () => {
-    const [note, setNote] = useState("")
+type Prop={
+    value:string,
+    onChange:(note:string)=>void
+}
+const NoteSection: React.FunctionComponent<Prop> = (props) => {
     const refInput = useRef<HTMLInputElement>(null)
     const onBlur = () => {
-        refInput.current && setNote(refInput.current.value)
+        refInput.current && props.onChange(refInput.current.value)
     }
     return (
         <Wrapper>
@@ -14,7 +17,7 @@ const NoteSection: React.FunctionComponent = () => {
                 <span>备注</span>
                 <input type="text"
                        ref={refInput}
-                       defaultValue={note}
+                       defaultValue={props.value}
                        onBlur={onBlur}
                        placeholder="在这里添加备注"/>
             </label>

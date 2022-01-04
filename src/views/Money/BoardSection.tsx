@@ -2,11 +2,11 @@ import styled from "styled-components";
 import * as React from "react";
 import {useState} from "react";
 
-const BoardSection:React.FunctionComponent=()=>{
+type Prop={
+    onChange:(amount:string)=>void
+}
+const BoardSection:React.FunctionComponent<Prop>=(props)=>{
     const [output,setOutput]=useState("0")
-    const _setOutput=()=>{
-
-    }
     const numChange=(e:React.MouseEvent)=>{
         const content=(e.target as HTMLButtonElement).textContent;
         if(!content)return
@@ -25,11 +25,10 @@ const BoardSection:React.FunctionComponent=()=>{
                 setOutput(output=>output!=='0'?output+content:content);break;
             case '删除':setOutput(output=>output.length>1? output.slice(0,-1):'0');break;
             case '清空':setOutput('0');break;
-            case 'OK':
+            case 'OK':props.onChange(output);break;
             case '.':setOutput(output=>!output.includes('.')?output+'.':output);break;
         }
     }
-    // @ts-ignore
     return (
         <Wrapper>
             <div className="output">

@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import React, {useState} from "react";
 
-const TagsSection: React.FunctionComponent = () => {
+
+type Props={
+    value:string[];
+    onChange:(selected:string[])=>void;
+}
+const TagsSection: React.FunctionComponent<Props> = (props) => {
     const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行'])
-    const [chosen, setChosen] = useState<string[]>([])
+    const chosen=props.value
     const onAddTag = () => {
         let tagName = window.prompt('请输入标签名');
         tagName && setTags([...tags, tagName])
     }
     const toggle = (tag: string) => {
-        chosen.includes(tag)?setChosen(chosen.filter(t=>t!==tag)):setChosen([...chosen,tag])
+        chosen.includes(tag)?props.onChange(chosen.filter(t=>t!==tag)):props.onChange([...chosen,tag])
     }
     return (
         <Wrapper>
