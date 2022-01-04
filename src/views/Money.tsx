@@ -14,13 +14,16 @@ function Money() {
         type:'-' as ('-'|'+'),
         amount:'0'
     })
+    const onChange=(obj:Partial<typeof selected>)=>{
+        setSelected({...selected,...obj})
+    }
     return (
         <MyLayout>
             {selected.amount}
-            <TagsSection value={selected.tags} onChange={(tags)=>setSelected({...selected,tags})}/>
-            <NoteSection value={selected.note} onChange={(note)=>setSelected({...selected,note})}/>
-            <TypeSection value={selected.type} onChange={(type)=>setSelected({...selected,type})}/>
-            <BoardSection onChange={(amount)=>setSelected({...selected,amount})}/>
+            <TagsSection value={selected.tags} onChange={(tags)=>onChange({tags})}/>
+            <NoteSection value={selected.note} onChange={(note)=>onChange({note})}/>
+            <TypeSection value={selected.type} onChange={(type)=>onChange({type})}/>
+            <BoardSection onChange={(amount)=>onChange({amount})}/>
         </MyLayout>
     );
 }
