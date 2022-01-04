@@ -3,6 +3,7 @@ import * as React from "react";
 import {useState} from "react";
 import Icon from "../components/Icon";
 import styled from "styled-components";
+import {NavLink} from "react-router-dom";
 
 function Tags() {
     const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行'])
@@ -11,12 +12,12 @@ function Tags() {
             <TagList>
                 {tags.map(tag =>
                     <li key={tag}>
-                        <span className="oneLine">{tag}</span>
-                        <Icon name="right"/>
+                        <NavLink to={/tags/+tag}>
+                            <span className="oneLine">{tag}</span>
+                            <Icon name="right"/>
+                        </NavLink>
                     </li>)}
             </TagList>
-            {/*<Space/>*/}
-            {/*<Space/>*/}
             <Center>
                 <Button>新增标签</Button>
             </Center>
@@ -31,10 +32,12 @@ const TagList = styled.ol`
   > li {
     border-bottom: 1px solid #d5d5d9;
     line-height: 20px;
-    padding: 12px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    > a{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+    }
   }
 `
 const Button=styled.button`
@@ -53,8 +56,5 @@ const Center=styled.div`
   transform: translateX(-50%);
   bottom:120px;
 `
-// const Space=styled.div`
-//   height:128px;
-// `
 
 export default Tags
