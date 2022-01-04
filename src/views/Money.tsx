@@ -9,7 +9,7 @@ import {useState} from "react";
 
 function Money() {
     const [selected,setSelected]=useState({
-        tags:[] as string[],
+        tags: [] as number[],
         note:"",
         type:'-' as ('-'|'+'),
         amount:'0'

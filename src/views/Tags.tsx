@@ -6,14 +6,20 @@ import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 
 function Tags() {
-    const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行'])
+    const [tags, setTags] = useState<{ id: number, name: string }[]>(
+        [
+            {id: 1, name: '衣'},
+            {id: 2, name: '食'},
+            {id: 3, name: '住'},
+            {id: 4, name: '行'}
+        ])
     return (
         <Layout>
             <TagList>
                 {tags.map(tag =>
-                    <li key={tag}>
-                        <NavLink to={/tags/+tag}>
-                            <span className="oneLine">{tag}</span>
+                    <li key={tag.id}>
+                        <NavLink to={'/tags/'+ tag.id}>
+                            <span className="oneLine">{tag.name}</span>
                             <Icon name="right"/>
                         </NavLink>
                     </li>)}
@@ -32,7 +38,8 @@ const TagList = styled.ol`
   > li {
     border-bottom: 1px solid #d5d5d9;
     line-height: 20px;
-    > a{
+
+    > a {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -40,21 +47,21 @@ const TagList = styled.ol`
     }
   }
 `
-const Button=styled.button`
+const Button = styled.button`
   font-size: 20px;
-  border:none;
-  padding:16px 24px;
+  border: none;
+  padding: 16px 24px;
   border-radius: 4px;
   background: lightgrey;
 `
-const Center=styled.div`
+const Center = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  left:50%;
+  left: 50%;
   transform: translateX(-50%);
-  bottom:120px;
+  bottom: 120px;
 `
 
 export default Tags
