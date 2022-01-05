@@ -1,5 +1,7 @@
-let id=0
+let id=JSON.parse(window.localStorage.getItem('id')||'0')
 const createId=()=>{
-    return ++id
+    id++
+    window.localStorage.setItem('id',id.toString())
+    return id
 }
 export {createId}
