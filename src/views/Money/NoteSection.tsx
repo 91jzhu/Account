@@ -1,33 +1,27 @@
 import styled from "styled-components";
 import * as React from "react";
-import {useRef} from "react";
+import {ChangeEventHandler, useRef} from "react";
+import {Input} from "../../components/Input";
 
 type Prop={
     value:string,
     onChange:(note:string)=>void
 }
 const NoteSection: React.FunctionComponent<Prop> = (props) => {
-    const refInput = useRef<HTMLInputElement>(null)
-    const onBlur = () => {
-        refInput.current && props.onChange(refInput.current.value)
+    const onChange:ChangeEventHandler<HTMLInputElement> = (e) => {
+        props.onChange(e.target.value)
     }
     return (
         <Wrapper>
-            <label>
-                <span>备注</span>
-                <input type="text"
-                       ref={refInput}
-                       defaultValue={props.value}
-                       onBlur={onBlur}
-                       placeholder="在这里添加备注"/>
-            </label>
+            <Input label="备注" type="text" value={props.value} onChange={onChange}
+                   placeholder="请填写备注"/>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.section`
   background: #f5f5f5;
-  padding: 0 16px;
+  padding: 14px 16px;
   font-size: 14px;
 
   > label {
