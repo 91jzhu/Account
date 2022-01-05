@@ -1,10 +1,8 @@
 import Layout from "../components/Layout";
 import * as React from "react";
-import {useState} from "react";
 import Icon from "../components/Icon";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
-import {createId} from "../lib/createId";
 import {useTags} from "useTags";
 
 function Tags() {
