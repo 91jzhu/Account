@@ -18,11 +18,11 @@ type Props = {
     label: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 const Input: React.FC<Props> = (props) => {
-    const {label, children, ...rest} = props;
+    const {label, children,...rest} = props;
     return (
         <Label>
             <span>{props.label}</span>
-            <input {...rest} />
+            <input {...rest}  />
         </Label>
     );
 };
