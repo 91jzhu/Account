@@ -9,7 +9,7 @@ import styled from "styled-components";
 import {Center} from "../components/Center";
 
 const Tag: React.FC = () => {
-    const {findTag,updateTag} = useTags();
+    const {findTag, updateTag, deleteTag} = useTags();
     let {id} = useParams();
     const tag = findTag(parseInt(id!));
     return (
@@ -19,15 +19,23 @@ const Tag: React.FC = () => {
                 <span>编辑标签</span>
                 <Icon name="fuck"/>
             </Topbar>
-            <InputWrapper>
-                <Input label="标签名" type="text" placeholder="标签名"
-                       value={tag.name} onChange={(e)=>{
-                           updateTag(tag.id,{name:e.target.value})
-                }}/>
-            </InputWrapper>
-            <Center>
-                <Button>删除标签</Button>
-            </Center>
+
+            {tag?<div>
+                <InputWrapper>
+                    <Input label="标签名" type="text" placeholder="标签名"
+                           value={tag.name} onChange={(e) => {
+                        updateTag(tag.id, {name: e.target.value})
+                    }}/>
+                </InputWrapper>
+                <Center>
+                    <Button onClick={() => {
+                        deleteTag(tag.id)
+                    }}>删除标签</Button>
+                </Center>
+            </div>:
+            <div>tag dont exist </div>
+            }
+
         </Layout>
     );
 };

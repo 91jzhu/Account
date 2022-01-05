@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React from "react";
 import {createId} from "../../lib/createId";
 import {useTags} from "../../useTags";
+import {Button} from "../../components/Button";
 
 type Props={
     value:number[];
