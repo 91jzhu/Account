@@ -9,7 +9,7 @@ import styled from "styled-components";
 import {Center} from "../components/Center";
 
 const Tag: React.FC = () => {
-    const {findTag} = useTags();
+    const {findTag,updateTag} = useTags();
     let {id} = useParams();
     const tag = findTag(parseInt(id!));
     return (
@@ -20,7 +20,10 @@ const Tag: React.FC = () => {
                 <Icon name="fuck"/>
             </Topbar>
             <InputWrapper>
-                <Input label="标签名" type="text" placeholder="标签名" value={tag.name} onChange={()=>{}}/>
+                <Input label="标签名" type="text" placeholder="标签名"
+                       value={tag.name} onChange={(e)=>{
+                           updateTag(tag.id,{name:e.target.value})
+                }}/>
             </InputWrapper>
             <Center>
                 <Button>删除标签</Button>
