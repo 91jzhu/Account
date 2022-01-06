@@ -2,34 +2,37 @@ import styled from "styled-components";
 import * as React from "react";
 
 type Prop={
-    value:number;
-    onChange:(amount:number,createdAt:string)=>void
+    value:string;
+    onChange:(amount:string,createdAt:string)=>void
     onOk:()=>void,
 }
 
 const BoardSection:React.FunctionComponent<Prop>=(props)=>{
-    let output=props.value.toString()
+    let output=props.value
     const setOutput=(content:string)=>{
-        if('123456789'.includes(content)){
-            output=output+content
-        }else if(content==="."){
-            output=output+content
-        }else if(output==='0'&&content==='0'){
-            output='0'
-        }else if(content==='删除'){
-            if(output.length===1){
-                output='0'
-            }else{
-                output=output.slice(0,-1)
-            }
-        }else if(content==='清空'){
-            output='0'
+        switch (content){
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                output==='0'?output=content:output+=content;break;
+            case '删除':output=output.length>1?output.slice(0,-1):'0';break;
+            case '清空':output='0';break;
+            case '.':output=output.includes('.')?output:output+content;break;
         }
-        props.onChange(parseFloat(output),(new Date()).toISOString())
+        props.onChange(output,(new Date()).toISOString())
     }
     const numChange=(e:React.MouseEvent)=>{
         const content=(e.target as HTMLButtonElement).textContent!
-        console.log(content);
+        if(output.length>6){
+            return
+        }
         setOutput(content)
     }
     return (

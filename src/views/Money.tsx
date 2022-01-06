@@ -13,7 +13,7 @@ function Money() {
         tags: [] as number[],
         note:"",
         type:'-' as ('-'|'+'),
-        amount:0,
+        amount:'0',
         createdAt:""
     })
     const {records,addRecord}=useRecords()
@@ -21,8 +21,12 @@ function Money() {
         setSelected({...selected,...obj})
     }
     const submit=()=>{
+        if(selected.tags===[]||selected.amount==='0'){
+            window.alert('必须选择标签或者输入金额')
+            return
+        }
         addRecord(selected)
-        window.alert('记账成功')
+        alert('记账成功')
         window.location.reload();
     }
     return (

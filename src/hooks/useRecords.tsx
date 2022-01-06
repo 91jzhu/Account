@@ -4,7 +4,7 @@ type RecordItem = {
     tags: number[]
     note: string
     type: '-' | '+'
-    amount: number
+    amount: string
     createdAt:string
 }
 const useRecords = () => {
