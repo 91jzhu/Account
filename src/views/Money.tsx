@@ -33,7 +33,9 @@ function Money() {
         <MyLayout>
             <TagsSection value={selected.tags} onChange={(tags)=>onChange({tags})}/>
             <NoteSection value={selected.note} onChange={(note)=>onChange({note})}/>
-            <TypeSection value={selected.type} onChange={(type)=>onChange({type})}/>
+            <TypeSectionWrapper>
+                <TypeSection value={selected.type} onChange={(type)=>onChange({type})}/>
+            </TypeSectionWrapper>
             <BoardSection value={selected.amount} onChange={(amount,createdAt)=>onChange({amount,createdAt})} onOk={submit}/>
         </MyLayout>
     );
@@ -42,5 +44,8 @@ function Money() {
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
+`
+const TypeSectionWrapper=styled.div`
+  background: #c4c4c4;
 `
 export default Money
