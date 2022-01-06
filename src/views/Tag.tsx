@@ -1,7 +1,7 @@
 import React, {useRef} from "react";
 import {NavLink, useParams} from "react-router-dom";
 import Icon from "components/Icon";
-import {useTags} from "useTags";
+import {useTags} from "hooks/useTags";
 import Layout from "components/Layout";
 import {Button} from "components/Button";
 import {Input} from "components/Input";

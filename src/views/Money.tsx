@@ -6,24 +6,31 @@ import {NoteSection} from "./Money/NoteSection";
 import {TypeSection} from "./Money/TypeSection";
 import {BoardSection} from "./Money/BoardSection";
 import {useState} from "react";
+import {useRecords} from "../hooks/useRecords";
 
 function Money() {
     const [selected,setSelected]=useState({
         tags: [] as number[],
         note:"",
         type:'-' as ('-'|'+'),
-        amount:'0'
+        amount:0,
+        createdAt:""
     })
+    const {records,addRecord}=useRecords()
     const onChange=(obj:Partial<typeof selected>)=>{
         setSelected({...selected,...obj})
     }
+    const submit=()=>{
+        addRecord(selected)
+        window.alert('记账成功')
+        window.location.reload();
+    }
     return (
         <MyLayout>
-            {selected.note}
             <TagsSection value={selected.tags} onChange={(tags)=>onChange({tags})}/>
             <NoteSection value={selected.note} onChange={(note)=>onChange({note})}/>
             <TypeSection value={selected.type} onChange={(type)=>onChange({type})}/>
-            <BoardSection onChange={(amount)=>onChange({amount})}/>
+            <BoardSection value={selected.amount} onChange={(amount,createdAt)=>onChange({amount,createdAt})} onOk={submit}/>
         </MyLayout>
     );
 }

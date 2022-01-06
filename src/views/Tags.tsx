@@ -3,7 +3,7 @@ import * as React from "react";
 import Icon from "components/Icon";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
-import {useTags} from "useTags";
+import {useTags} from "hooks/useTags";
 import {Button} from "components/Button";
 import {Center} from "components/Center";
 

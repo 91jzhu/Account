@@ -1,33 +1,36 @@
 import styled from "styled-components";
 import * as React from "react";
-import {useState} from "react";
 
 type Prop={
-    onChange:(amount:string)=>void
+    value:number;
+    onChange:(amount:number,createdAt:string)=>void
+    onOk:()=>void,
 }
+
 const BoardSection:React.FunctionComponent<Prop>=(props)=>{
-    const [output,setOutput]=useState("0")
-    const numChange=(e:React.MouseEvent)=>{
-        const content=(e.target as HTMLButtonElement).textContent;
-        if(!content)return
-        switch (content){
-            case '0':
-            case '1':
-            case '2':
-            case '3':
-            case '4':
-            case '5':
-            case '6':
-            case '7':
-            case '8':
-            case '9':
-                output.length<8&&
-                setOutput(output=>output!=='0'?output+content:content);break;
-            case '删除':setOutput(output=>output.length>1? output.slice(0,-1):'0');break;
-            case '清空':setOutput('0');break;
-            case 'OK':props.onChange(output);break;
-            case '.':setOutput(output=>!output.includes('.')?output+'.':output);break;
+    let output=props.value.toString()
+    const setOutput=(content:string)=>{
+        if('123456789'.includes(content)){
+            output=output+content
+        }else if(content==="."){
+            output=output+content
+        }else if(output==='0'&&content==='0'){
+            output='0'
+        }else if(content==='删除'){
+            if(output.length===1){
+                output='0'
+            }else{
+                output=output.slice(0,-1)
+            }
+        }else if(content==='清空'){
+            output='0'
         }
+        props.onChange(parseFloat(output),(new Date()).toISOString())
+    }
+    const numChange=(e:React.MouseEvent)=>{
+        const content=(e.target as HTMLButtonElement).textContent!
+        console.log(content);
+        setOutput(content)
     }
     return (
         <Wrapper>
@@ -46,7 +49,7 @@ const BoardSection:React.FunctionComponent<Prop>=(props)=>{
                 <button>7</button>
                 <button>8</button>
                 <button>9</button>
-                <button className="ok">OK</button>
+                <button className="ok" onClick={()=>{props.onOk();output='0'}}>OK</button>
                 <button className="zero">0</button>
                 <button className="dot">.</button>
             </div>
