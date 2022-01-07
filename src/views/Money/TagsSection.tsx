@@ -29,14 +29,15 @@ const TagsSection: React.FunctionComponent<Props> = (props) => {
 const Wrapper = styled.section`
   background: #FFFFFF;
   padding: 12px 16px;
-  flex-grow: 1;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-
   > ol {
     margin: 0 -12px;
+    height: 18vh;
+    overflow-y: auto;
 
     > li {
       background: #D9D9D9;

@@ -30,11 +30,11 @@ function Data() {
                              onChange={type => setType(type)}/>
             </TypeSectionWrapper>
 
-            {array.map((item, index) => <div>
+            {array.map((item, index) => <div key={index}>
                 <Header key={index}>{item[0]}</Header>
                 <div>
-                    {item[1].map(r => {
-                        return <Item key={r.createdAt}>
+                    {item[1].map((r,index) => {
+                        return <Item key={index}>
                             <div className="tags">
                                 {r.tags.map((tag, index) =><span key={index}>{getName(tag)}</span>)
                                     .reduce((result,span,index,array)=>
@@ -51,10 +51,8 @@ function Data() {
                     })}
                 </div>
             </div>)}
-
         </Layout>
     )
-        ;
 }
 
 const Item = styled.div`

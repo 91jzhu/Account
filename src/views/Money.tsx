@@ -44,6 +44,7 @@ function Money() {
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
+  height: calc(100% - 63px);
 `
 const TypeSectionWrapper=styled.div`
   background: #c4c4c4;
