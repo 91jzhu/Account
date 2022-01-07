@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-type RecordItem = {
+export type RecordItem = {
     tags: number[]
     note: string
     type: '-' | '+'
